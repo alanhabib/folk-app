@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import InputList from "../../Component/InputList";
+import InputList from "../../Component/InputList/InputList";
 import "./UserInput.css";
 
 class userInput extends Component {
@@ -29,6 +29,7 @@ class userInput extends Component {
         } else {
             this.setState({
                 text: "",
+                address: "",
                 textCollection: [...this.state.textCollection,
                 this.state.text,
                 this.state.email,
@@ -44,15 +45,15 @@ class userInput extends Component {
     render() {
 
         return (
-            <div>
+            <React.Fragment>
                 <form className="userInputForm" onSubmit={this.inputTextHandler} ref={this.textInput} >
                     <input placeholder="Write some text..." type="text" name="text" onChange={this.textValueHandler} />
                     <input type="email" placeholder="Write your email..." name="email" onChange={this.textValueHandler} />
                     <input type="text" placeholder="Write your address..." name="address" onChange={this.textValueHandler} />
                     <button className="userInputButton">Submit</button>
                 </form>
-                <InputList textCollection={this.state.textCollection} />
-            </div>
+                <InputList textCollection={this.state.textCollection} className="pleaseWork" />
+            </React.Fragment>
         )
     }
 }

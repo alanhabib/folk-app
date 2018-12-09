@@ -45,6 +45,7 @@ class App extends Component {
           if (this.state.selectedUser === facts.id) {
             return (
               <div key={facts.id}>
+                <Header />
                 <div className="otherCardWrapper">
                   <ul className="otherCardContainer">
                     <li>Username: <span>{facts.username}</span></li>
@@ -53,11 +54,13 @@ class App extends Component {
                     <li>Company: <span>{facts.company.name}</span></li>
                   </ul>
                 </div>
-                <UserInput />
+                <UserInput className="userInputWrapper" />
                 <button
-                  onClick={() => this.setShowUserDetails(false)}>
+                  onClick={() => this.setShowUserDetails(false)}
+                  className="backButton">
                   Back
                   </button>
+                <Footer />
               </div>
 
             );
@@ -91,17 +94,11 @@ class App extends Component {
     ));
 
     return (
-      <React.Fragment>
-        <div className="cardWrapper">
-
-          <Header />
-          {listOfUsers}
-          <Footer />
-        </div>
-
-      </React.Fragment>
-
-
+      <div className="cardWrapper">
+        <Header />
+        {listOfUsers}
+        <Footer />
+      </div>
     );
   }
 }

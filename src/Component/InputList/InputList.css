@@ -1,0 +1,21 @@
+.inputListStyle{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: inherit;
+    align-items: center;
+    margin:auto;
+    margin-bottom: 20px;
+    width: 80%;
+    height: auto;
+    box-shadow: 0 15px 35px rgba(50, 50, 90, .1), 0 5px 15px rgba(0, 0, 0, .17);
+    background-color: rgba(236, 234, 234, 0.5);
+
+}
+
+.inputListParagraph{
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+}
