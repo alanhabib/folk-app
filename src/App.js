@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import UserInput from "./Container/UserInput/UserInput";
+import Footer from "./Component/Footer/Footer";
+import Header from "./Component/Header/Header";
 import './App.css';
-import "./Users.css";
 
 
 class App extends Component {
   state = {
     users: [],
-    selectedUser: -1
+    selectedUser: 0,
+    showUserDetails: false,
   };
 
   componentDidMount() {
@@ -23,43 +26,82 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
-  getUser = id => {
-    this.setState({ selectedUser: id });
+  setSelectedUser = id => {
+    this.setState({
+      selectedUser: id,
+      showUserDetails: true
+    });
   };
 
-  render() {
-    const listOfUsers = this.state.users.slice(0, 5).map(user => (
-      <p
-        key={user.id}
-        className="userBox"
-        onClick={this.getUser.bind(this, user.id)}
-      >
-        {user.id}
-        {user.name}
-      </p>
-    ));
+  setShowUserDetails = (status) => {
+    this.setState({ showUserDetails: status })
+  }
 
-    if (this.state.selectedUser > -1) {
-      const userFacts = this.state.users.slice(0, 5).map(facts => {
-        if (this.state.selectedUser === facts.id) {
-          return (
-            <p key={facts.id}>
-              {facts.name}
-              {facts.username}
-              {facts.email}
-              {facts.address.street}
-              {facts.company.name}
-            </p>
-          );
-        }
-      });
+  render() {
+    if (this.state.showUserDetails) {
+      const userFacts = this.state.users
+        .slice(0, 5)
+        .map(facts => {
+          if (this.state.selectedUser === facts.id) {
+            return (
+              <div key={facts.id}>
+                <div className="otherCardWrapper">
+                  <ul className="otherCardContainer">
+                    <li>Username: <span>{facts.username}</span></li>
+                    <li>Email: <span>{facts.email}</span></li>
+                    <li>Street address: <span>{facts.address.street}</span></li>
+                    <li>Company: <span>{facts.company.name}</span></li>
+                  </ul>
+                </div>
+                <UserInput />
+                <button
+                  onClick={() => this.setShowUserDetails(false)}>
+                  Back
+                  </button>
+              </div>
+
+            );
+          }
+        });
       return userFacts;
     }
+    // const filteredUsers = this.state.users.filter(
+    //   (searchUser) => {
+    //     return searchUser.name.indexOF(this.state.users) !== -1;
+    //   }
+    // )
+    const listOfUsers = this.state.users.slice(0, 5).map(user => (
+      <div
+        onClick={() => this.setSelectedUser(user.id)}
+        className="cardContainer"
+        key={user.id}>
+        <img src={"https://picsum.photos/200/300/?image=" + user.id * 25} alt="Random pictures" />
+        <div
+          className="cardText"
+        >
+          <p className="userName">
+            {user.name}
+          </p>
+          <p className="userID">
+            {user.id}
+          </p>
+
+        </div>
+      </div>
+    ));
 
     return (
-      <div className="App">
-        {listOfUsers}
-      </div>
+      <React.Fragment>
+        <div className="cardWrapper">
+
+          <Header />
+          {listOfUsers}
+          <Footer />
+        </div>
+
+      </React.Fragment>
+
+
     );
   }
 }

@@ -1,0 +1,50 @@
+input {
+    min-width: 7%;
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    border: 1px solid rgb(70, 69, 69);
+    border-radius: 4px;
+    height: 36px;
+    width: 70%;
+    margin: 11px;
+    padding: 4px 4px 4px 8px;
+    font-size: 16px;
+}
+
+.userInputForm{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;
+    align-content: stretch;
+    margin-top: 3em;
+
+}
+
+.userInputButton {
+display:inline-block;
+padding: 0.3em 1.2em;
+margin:0 0.3em 0.3em 0;
+border-radius:4px;
+box-sizing: border-box;
+text-decoration:none;
+font-family:'Roboto',sans-serif;
+font-weight:300;
+color:#FFFFFF;
+background-color:#4e87f1;
+text-align:center;
+transition: all 0.2s;
+outline: none;
+height: 36px;
+/* width: 75%; */
+margin: 36px 16px 16px 16px;
+padding: 10px 20px 32px 20px;
+font-size: 20px;
+font-weight: 500;
+}
+
+.userInputButton:hover{
+    background-color:#4085c6;
+}
